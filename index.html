@@ -1,0 +1,1056 @@
+code<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Élise Fontaine | Portfolio Photographique</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg:#f7f5f2;
+    --text:#1f1d1a;
+    --muted:#5a5751;
+    --accent:#d4a373;
+    --accent-strong:#c06c5a;
+    --card:#ffffff;
+    --shadow:0 20px 45px rgba(31,29,26,0.15);
+}
+body.dark {
+    --bg:#121212;
+    --text:#f5f1eb;
+    --muted:#c3beb7;
+    --accent:#efb366;
+    --accent-strong:#ef8f66;
+    --card:#1f1f1f;
+    --shadow:0 20px 45px rgba(0,0,0,0.55);
+}
+*{box-sizing:border-box;}
+body {
+    margin:0;
+    font-family:"Poppins",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:background 0.4s ease,color 0.4s ease;
+}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+.scroll-progress {
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-strong));
+    width:0;
+    z-index:999;
+}
+header {
+    position:sticky;
+    top:0;
+    backdrop-filter:blur(18px);
+    background:rgba(247,245,242,0.8);
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    z-index:50;
+    transition:background 0.4s;
+}
+body.dark header{background:rgba(18,18,18,0.75);border-color:rgba(255,255,255,0.08);}
+.navbar {
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1rem 1.5rem;
+    gap:1rem;
+}
+.brand span {
+    font-family:"Playfair Display",serif;
+    letter-spacing:0.08em;
+    font-size:1.3rem;
+}
+nav ul {
+    display:flex;
+    gap:1.3rem;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+nav a{font-weight:500;position:relative;}
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0;
+    height:2px;
+    background:var(--accent);
+    transition:width 0.3s;
+}
+nav a:hover::after{width:100%;}
+.controls {
+    display:flex;
+    align-items:center;
+    gap:0.75rem;
+}
+.btn {
+    padding:0.7rem 1.4rem;
+    border-radius:999px;
+    border:1px solid var(--text);
+    background:transparent;
+    color:inherit;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.3s;
+}
+.btn-outline:hover {
+    background:var(--text);
+    color:var(--bg);
+}
+.btn-primary {
+    border:none;
+    background:linear-gradient(120deg,var(--accent),var(--accent-strong));
+    color:#fff;
+    box-shadow:0 12px 24px rgba(0,0,0,0.15);
+}
+.theme-toggle {
+    width:44px;
+    height:24px;
+    border-radius:999px;
+    border:none;
+    background:var(--muted);
+    position:relative;
+    cursor:pointer;
+}
+.theme-toggle span {
+    position:absolute;
+    top:3px;
+    left:4px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:var(--card);
+    transition:transform 0.3s;
+}
+body.dark .theme-toggle span{transform:translateX(18px);}
+.hero {
+    max-width:1200px;
+    margin:2rem auto;
+    padding:3rem 1.5rem 2rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:2.5rem;
+    align-items:center;
+}
+.hero-text h1 {
+    font-size:3rem;
+    margin:0 0 1rem;
+    font-family:"Playfair Display",serif;
+}
+.hero-text h1 span {
+    color:var(--accent-strong);
+    display:inline-block;
+    min-width:220px;
+}
+.hero-text ul {
+    padding-left:1.2rem;
+    margin:1rem 0 0;
+    color:var(--muted);
+}
+.hero-actions {
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+    margin-top:1.5rem;
+}
+.hero-visual {
+    position:relative;
+    border-radius:30px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+.hero-visual img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+.hero-tag {
+    position:absolute;
+    left:20px;
+    bottom:20px;
+    background:rgba(0,0,0,0.65);
+    color:#fff;
+    padding:0.7rem 1rem;
+    border-radius:16px;
+    font-size:0.9rem;
+    letter-spacing:0.02em;
+    backdrop-filter:blur(10px);
+}
+.section {
+    max-width:1200px;
+    margin:0 auto;
+    padding:3.5rem 1.5rem;
+}
+.section h2 {
+    font-size:2.2rem;
+    font-family:"Playfair Display",serif;
+    margin-bottom:0.3rem;
+}
+.section p.lead {
+    max-width:640px;
+    color:var(--muted);
+}
+.stats-grid {
+    margin-top:2rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:1.3rem;
+}
+.stat-card {
+    background:var(--card);
+    border-radius:24px;
+    padding:1.8rem;
+    text-align:center;
+    box-shadow:var(--shadow);
+}
+.stat-card .value {
+    font-size:2.5rem;
+    font-weight:600;
+}
+.stat-card .label {
+    color:var(--muted);
+    margin-top:0.4rem;
+}
+.filter-bar {
+    margin:2rem 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.8rem;
+}
+.filter-btn {
+    border:none;
+    border-radius:999px;
+    padding:0.6rem 1.3rem;
+    background:rgba(0,0,0,0.05);
+    cursor:pointer;
+    font-weight:500;
+    transition:background 0.3s,color 0.3s;
+}
+.filter-btn.active {
+    background:var(--accent);
+    color:#fff;
+}
+.gallery-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:1.3rem;
+}
+.gallery-card {
+    position:relative;
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    min-height:320px;
+    cursor:pointer;
+}
+.gallery-card img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.4s;
+}
+.gallery-card:hover img{transform:scale(1.04);}
+.gallery-info {
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:1.1rem;
+    color:#fff;
+    background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,0.78));
+}
+.gallery-info h3 {
+    margin:0;
+    font-size:1.05rem;
+}
+.gallery-info span {
+    font-size:0.9rem;
+    opacity:0.85;
+}
+.services-grid {
+    margin-top:2rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1.4rem;
+}
+.service-card {
+    background:var(--card);
+    border-radius:24px;
+    padding:1.6rem;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    gap:0.9rem;
+}
+.service-card h3{margin:0;}
+.price-tag {
+    color:var(--accent-strong);
+    font-weight:600;
+    font-size:1.3rem;
+}
+.service-details {
+    background:rgba(0,0,0,0.04);
+    padding:0.9rem 1rem;
+    border-radius:16px;
+    display:none;
+}
+.service-card.active .service-details{display:block;}
+.testimonials {
+    position:relative;
+    margin-top:2rem;
+}
+.testimonial-card {
+    background:var(--card);
+    border-radius:30px;
+    min-height:260px;
+    padding:2rem;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    gap:1.1rem;
+}
+.testimonial-header {
+    display:flex;
+    align-items:center;
+    gap:1rem;
+}
+.testimonial-header img {
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    object-fit:cover;
+}
+.quote {
+    font-size:1.05rem;
+    line-height:1.7;
+}
+.testimonial-nav {
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:44px;
+    height:44px;
+    border:none;
+    border-radius:50%;
+    background:var(--accent);
+    color:#fff;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+}
+.testimonial-nav.prev{left:-22px;}
+.testimonial-nav.next{right:-22px;}
+.booking-wrap {
+    margin-top:2rem;
+    background:var(--card);
+    border-radius:32px;
+    padding:2.5rem;
+    box-shadow:var(--shadow);
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:2rem;
+}
+.booking-form label {
+    display:flex;
+    flex-direction:column;
+    gap:0.35rem;
+    font-weight:500;
+    margin-bottom:1rem;
+}
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    border:1px solid rgba(0,0,0,0.12);
+    border-radius:12px;
+    padding:0.65rem 0.8rem;
+    font-family:inherit;
+    background:transparent;
+    color:inherit;
+}
+.booking-form textarea{min-height:90px;resize:vertical;}
+.booking-form input[type="range"]{appearance:none;height:6px;border-radius:6px;background:rgba(0,0,0,0.1);outline:none;}
+.booking-form input[type="range"]::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent-strong);cursor:pointer;}
+.range-value {
+    font-weight:600;
+    color:var(--accent-strong);
+}
+.addons {
+    display:flex;
+    flex-direction:column;
+    gap:0.6rem;
+}
+.addons label {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-weight:500;
+}
+.price-estimate {
+    background:rgba(0,0,0,0.04);
+    border-radius:26px;
+    padding:1.7rem;
+}
+.price-figure {
+    font-size:2rem;
+    font-weight:600;
+    margin:0.2rem 0 0.8rem;
+}
+.price-estimate ul {
+    padding-left:1.1rem;
+}
+.status-msg {
+    margin-top:1rem;
+    font-weight:600;
+}
+.status-error{color:#c55353;}
+.status-success{color:#3a9d5d;}
+.journal-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1.4rem;
+    margin-top:2rem;
+}
+.journal-card {
+    background:var(--card);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+}
+.journal-card img {
+    height:180px;
+    width:100%;
+    object-fit:cover;
+}
+.journal-content {
+    padding:1.4rem;
+    display:flex;
+    flex-direction:column;
+    gap:0.8rem;
+    flex:1;
+}
+.journal-content button {
+    align-self:flex-start;
+    background:none;
+    border:none;
+    color:var(--accent-strong);
+    font-weight:600;
+    cursor:pointer;
+}
+.contact {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:2rem;
+    margin-top:2rem;
+}
+.contact-details {
+    background:var(--card);
+    border-radius:24px;
+    padding:1.8rem;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    gap:0.8rem;
+}
+.contact-details a {
+    color:var(--accent-strong);
+    font-weight:600;
+}
+.map iframe {
+    width:100%;
+    border:0;
+    border-radius:24px;
+    height:320px;
+    box-shadow:var(--shadow);
+}
+footer {
+    text-align:center;
+    padding:2rem 1rem;
+    color:var(--muted);
+}
+.back-to-top {
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:52px;
+    height:52px;
+    border:none;
+    border-radius:50%;
+    background:var(--accent);
+    color:#fff;
+    font-size:1.3rem;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    z-index:80;
+}
+.back-to-top.show{display:flex;}
+.lightbox,
+.journal-modal {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:1rem;
+    z-index:120;
+}
+.lightbox.active,
+.journal-modal.active{display:flex;}
+.lightbox-content,
+.journal-modal-content {
+    background:var(--card);
+    border-radius:24px;
+    max-width:900px;
+    width:100%;
+    padding:1.2rem;
+    box-shadow:var(--shadow);
+    position:relative;
+}
+.lightbox-content img {
+    border-radius:18px;
+    width:100%;
+    max-height:60vh;
+    object-fit:cover;
+}
+.lightbox-details {
+    margin-top:1rem;
+}
+.lightbox-close,
+.lightbox-nav,
+.journal-modal button.close-modal {
+    position:absolute;
+    top:16px;
+    border:none;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.6);
+    color:#fff;
+    cursor:pointer;
+}
+.lightbox-close{right:16px;}
+.lightbox-nav.prev{left:16px;}
+.lightbox-nav.next{right:64px;}
+.journal-modal button.close-modal {
+    right:16px;
+}
+.journal-modal-content h3 {
+    margin-top:0;
+}
+@media (max-width:720px){
+    nav ul{display:none;}
+    .testimonial-nav{display:none;}
+    .hero-text h1{font-size:2.4rem;}
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress"></div>
+<header>
+    <div class="navbar">
+        <div class="brand"><span>ÉLISE FONTAINE</span></div>
+        <nav>
+            <ul>
+                <li><a href="#galerie">Portfolio</a></li>
+                <li><a href="#services">Prestations</a></li>
+                <li><a href="#temoignages">Témoignages</a></li>
+                <li><a href="#booking">Réserver</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="controls">
+            <button class="btn btn-outline" onclick="document.querySelector('#galerie').scrollIntoView({behavior:'smooth'});">Voir les séries</button>
+            <button class="theme-toggle" aria-label="Changer le thème"><span></span></button>
+        </div>
+    </div>
+</header>
+
+<main>
+<section class="hero">
+    <div class="hero-text">
+        <h1>Regards signature pour <span class="rotating-word">histoires lumineuses</span></h1>
+        <p>Photographe éditoriale basée à Paris, j’accompagne maisons de couture, couples modernes et marques responsables avec une direction artistique exigeante et une obsession de la lumière naturelle.</p>
+        <div class="hero-actions">
+            <button class="btn btn-primary" onclick="document.querySelector('#booking').scrollIntoView({behavior:'smooth'});">Planifier un rendez-vous</button>
+            <button class="btn btn-outline" onclick="window.open('https://www.instagram.com','_blank');">Instagram</button>
+        </div>
+        <ul>
+            <li>Commandes éditoriales pour Vogue Scandinavia, MilK Magazine, The Lane.</li>
+            <li>Ambassadrice Leica Europe depuis 2023.</li>
+            <li>Basée à Paris, disponible pour projets internationaux.</li>
+        </ul>
+    </div>
+    <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80" alt="Mariée au lever du jour">
+        <div class="hero-tag">Lumière dorée · Reykjavik — 6h12</div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Chiffres clés</h2>
+    <p class="lead">Une décennie de commandes tissées entre émotion, mouvement et précision documentaire.</p>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="value" data-target="128">0</div>
+            <div class="label">mariages racontés</div>
+        </div>
+        <div class="stat-card">
+            <div class="value" data-target="37">0</div>
+            <div class="label">publications internationales</div>
+        </div>
+        <div class="stat-card">
+            <div class="value" data-target="18">0</div>
+            <div class="label">pays explorés en 2025</div>
+        </div>
+        <div class="stat-card">
+            <div class="value" data-target="542">0</div>
+            <div class="label">portraits cinématographiques</div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="galerie">
+    <h2>Portfolio vivant</h2>
+    <p class="lead">Sélection éditée chaque semaine pour refléter mes commandes actuelles. Choisissez une collection pour explorer.</p>
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Tout</button>
+        <button class="filter-btn" data-filter="wedding">Mariage</button>
+        <button class="filter-btn" data-filter="portrait">Portrait</button>
+        <button class="filter-btn" data-filter="travel">Voyage</button>
+        <button class="filter-btn" data-filter="editorial">Éditorial</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<section class="section" id="services">
+    <h2>Prestations sur mesure</h2>
+    <p class="lead">Chaque expérience est construite autour de l’intention artistique, d’une préparation minutieuse et d’une équipe dédiée.</p>
+    <div class="services-grid">
+        <article class="service-card">
+            <h3>Collection Serment</h3>
+            <p>Couverture complète de votre mariage contemporain, du matin aux premières lueurs de fête.</p>
+            <div class="price-tag">À partir de 1 800 €</div>
+            <button class="btn btn-outline toggle-service">Détails</button>
+            <div class="service-details">
+                <ul>
+                    <li>Direction artistique & scouting lumière</li>
+                    <li>Reportage argentique + numérique</li>
+                    <li>Galerie privée sous 4 semaines</li>
+                </ul>
+            </div>
+        </article>
+        <article class="service-card">
+            <h3>Portraits Signature</h3>
+            <p>Séances éditoriales pour talents, dirigeant·e·s et artistes avec équipe grooming.</p>
+            <div class="price-tag">À partir de 950 €</div>
+            <button class="btn btn-outline toggle-service">Détails</button>
+            <div class="service-details">
+                <ul>
+                    <li>Moodboard & stylisme personnalisé</li>
+                    <li>Studio mobile lumière continue</li>
+                    <li>Retouches haut de gamme</li>
+                </ul>
+            </div>
+        </article>
+        <article class="service-card">
+            <h3>Campagnes Édito</h3>
+            <p>Production clé en main pour maisons de mode, beauté et design lifestyle.</p>
+            <div class="price-tag">À partir de 2 200 €</div>
+            <button class="btn btn-outline toggle-service">Détails</button>
+            <div class="service-details">
+                <ul>
+                    <li>Repérages internationaux</li>
+                    <li>Équipe créative dédiée</li>
+                    <li>Délivrables print & social optimisés</li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="section" id="temoignages">
+    <h2>Voix des clients</h2>
+    <p class="lead">Des collaborations nourries par la confiance et un soin obsessionnel du détail.</p>
+    <div class="testimonials">
+        <button class="testimonial-nav prev" aria-label="Précédent">‹</button>
+        <div class="testimonial-card" id="testimonialCard"></div>
+        <button class="testimonial-nav next" aria-label="Suivant">›</button>
+    </div>
+</section>
+
+<section class="section" id="booking">
+    <h2>Planifier un projet</h2>
+    <p class="lead">Décrivez votre vision : je reviens sous 24h avec un moodboard personnalisé et un devis détaillé.</p>
+    <div class="booking-wrap">
+        <form class="booking-form" id="bookingForm">
+            <label>Nom complet
+                <input type="text" name="name" placeholder="Ex. Clara Dupont" required>
+            </label>
+            <label>Email professionnel
+                <input type="email" name="email" placeholder="hello@studio.com" required>
+            </label>
+            <label>Date souhaitée
+                <input type="date" name="date" required>
+            </label>
+            <label>Type de commande
+                <select name="package" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="wedding">Collection Serment</option>
+                    <option value="portrait">Portrait Signature</option>
+                    <option value="editorial">Campagne Édito</option>
+                </select>
+            </label>
+            <label>Durée (heures)
+                <input type="range" name="hours" min="2" max="12" value="6">
+                <span class="range-value" id="hourValue">6 h</span>
+            </label>
+            <div class="addons">
+                <label><span>Drone cinématique</span><input type="checkbox" value="drone"></label>
+                <label><span>Tirages barytés (10)</span><input type="checkbox" value="prints"></label>
+                <label><span>Livraison rush 72h</span><input type="checkbox" value="rush"></label>
+            </div>
+            <label>Notes créatives
+                <textarea name="notes" placeholder="Ambiance, palette, lieux, inspirations…"></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+            <div class="status-msg" id="statusMsg"></div>
+        </form>
+        <div class="price-estimate">
+            <h3>Estimation immédiate</h3>
+            <p class="price-figure" id="priceFigure">0 €</p>
+            <ul id="priceBreakdown"></ul>
+            <p class="muted">Les devis sont affinés après un appel créatif pour inclure déplacements, équipe et droits.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Journal de bord</h2>
+    <p class="lead">Notes visuelles et carnets de route, mis à jour toutes les deux semaines.</p>
+    <div class="journal-grid">
+        <article class="journal-card">
+            <img src="https://images.unsplash.com/photo-1520854223473-4a321d0dafa3?auto=format&fit=crop&w=1200&q=80" alt="Mariage islandais">
+            <div class="journal-content">
+                <h3>Brume arctique, vœux au fjord</h3>
+                <p class="excerpt">Mariage intimiste en Islande, entre pluie horizontale et velours délavé.</p>
+                <button data-title="Brume arctique, vœux au fjord" data-text="Reportage minimaliste soutenu par une palette monochrome et des optiques vintage rehoussées.">Lire plus</button>
+            </div>
+        </article>
+        <article class="journal-card">
+            <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1200&q=80" alt="Portraits gastronomiques">
+            <div class="journal-content">
+                <h3>Portraits de chefs pâtissiers</h3>
+                <p class="excerpt">Série gastronomique pour Maison Lenôtre, lumière continue et gâteaux sculpturaux.</p>
+                <button data-title="Portraits de chefs pâtissiers" data-text="Travail chromatique autour du caramel noir, références Bauhaus et textures gourmandes.">Lire plus</button>
+            </div>
+        </article>
+        <article class="journal-card">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Nuit à Kyoto">
+            <div class="journal-content">
+                <h3>Kyoto, carnet nocturne</h3>
+                <p class="excerpt">Balade photographique dans Gion, néons rétro et silhouettes calligraphiées.</p>
+                <button data-title="Kyoto, carnet nocturne" data-text="Série tournée au Leica M6 avec pellicule Portra poussée à 1600 ISO pour garder le grain soyeux.">Lire plus</button>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="section contact" id="contact">
+    <div class="contact-details">
+        <h2>Atelier & contact</h2>
+        <p>Studio Aurore — 12 rue Oberkampf, 75011 Paris</p>
+        <p>Tél : <a href="tel:+33658524719">+33 6 58 52 47 19</a></p>
+        <p>Email : <a href="mailto:bonjour@elisefontaine.fr">bonjour@elisefontaine.fr</a></p>
+        <p>Disponibilités 2026 : mars, avril, juin, septembre.</p>
+        <div class="hero-actions">
+            <button class="btn btn-primary" onclick="window.open('https://calendly.com','_blank');">Planifier un appel</button>
+            <button class="btn btn-outline" onclick="window.open('https://www.linkedin.com','_blank');">LinkedIn</button>
+        </div>
+    </div>
+    <div class="map">
+        <iframe title="Studio Élise Fontaine" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.855763566934!2d2.369230076962957!3d48.86377407133326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66df9cd35fb2b%3A0x9fa41063f63683bc!2sRue%20Oberkampf%2C%2075011%20Paris!5e0!3m2!1sfr!2sfr!4v1700000000000"></iframe>
+    </div>
+</section>
+</main>
+
+<footer>
+    © 2026 Élise Fontaine · Photographe éditoriale & documentaire · Paris — Monde
+</footer>
+
+<button class="back-to-top" aria-label="Retour en haut">↑</button>
+
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+        <button class="lightbox-close" aria-label="Fermer">×</button>
+        <button class="lightbox-nav prev" aria-label="Image précédente">‹</button>
+        <button class="lightbox-nav next" aria-label="Image suivante">›</button>
+        <img src="" alt="" id="lightboxImg">
+        <div class="lightbox-details">
+            <h3 id="lightboxTitle"></h3>
+            <p id="lightboxDesc"></p>
+            <span id="lightboxLocation"></span>
+        </div>
+    </div>
+</div>
+
+<div class="journal-modal" id="journalModal">
+    <div class="journal-modal-content">
+        <button class="close-modal" aria-label="Fermer l’article">×</button>
+        <h3 id="journalModalTitle"></h3>
+        <p id="journalModalText"></p>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+    const rotating=document.querySelector('.rotating-word');
+    const words=["histoires lumineuses","gestes couture","campagnes sensibles","instants-document"];
+    let wordIndex=0;
+    setInterval(()=>{
+        wordIndex=(wordIndex+1)%words.length;
+        rotating.textContent=words[wordIndex];
+    },2800);
+
+    document.querySelector('.theme-toggle').addEventListener('click',()=>document.body.classList.toggle('dark'));
+
+    const scrollProgress=document.querySelector('.scroll-progress');
+    const backTop=document.querySelector('.back-to-top');
+    window.addEventListener('scroll',()=>{
+        const scrolled=window.scrollY;
+        const max=document.documentElement.scrollHeight-window.innerHeight;
+        scrollProgress.style.width=`${(scrolled/max)*100}%`;
+        backTop.classList.toggle('show',scrolled>400);
+    });
+    backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+    const counters=document.querySelectorAll('.stat-card .value');
+    const counterObserver=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
+                const el=entry.target;
+                const target=+el.dataset.target;
+                let current=0;
+                const step=Math.ceil(target/120);
+                const update=()=>{
+                    current+=step;
+                    if(current>target) current=target;
+                    el.textContent=current;
+                    if(current<target) requestAnimationFrame(update);
+                };
+                update();
+                counterObserver.unobserve(el);
+            }
+        });
+    },{threshold:0.45});
+    counters.forEach(c=>counterObserver.observe(c));
+
+    const galleryData=[
+        {title:"Serment d’été",category:"wedding",location:"Chantilly, France",url:"https://images.unsplash.com/photo-1520854223473-4a321d0dafa3?auto=format&fit=crop&w=1400&q=80",description:"Cérémonie à ciel ouvert et lumière filtrée par les hêtres centenaires."},
+        {title:"Vœux au volcan",category:"wedding",location:"Vík, Islande",url:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80",description:"Palette minérale et robe Alexandra Grecco sous vents salés."},
+        {title:"Portrait Indigo",category:"portrait",location:"Paris 11e, France",url:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1400&q=80",description:"Portrait corporate nouvelle génération, lumière glissante."},
+        {title:"Chefs Pâtissiers",category:"portrait",location:"Lyon, France",url:"https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1400&q=80",description:"Textures gourmandes pour Maison Lenôtre."},
+        {title:"Kyoto Nocturne",category:"travel",location:"Kyoto, Japon",url:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80",description:"Néons pastel et pluie fine dans Gion."},
+        {title:"Atlas // Vent",category:"travel",location:"Agafay, Maroc",url:"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80",description:"Désert texturé, dunes ivoire et voile architectural."},
+        {title:"Couture du Soir",category:"editorial",location:"Paris, France",url:"https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1400&q=80",description:"Campagne mode inspirée par les années 70 italiennes."},
+        {title:"Lignes Modernes",category:"editorial",location:"Barcelone, Espagne",url:"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=80",description:"Architecture brutaliste et silhouettes graphiques."}
+    ];
+    const galleryGrid=document.getElementById('galleryGrid');
+    const filters=document.querySelectorAll('.filter-btn');
+    let currentFilter='all';
+    let lightboxIndex=0;
+    const visibleItems=[];
+    const renderGallery=()=>{
+        galleryGrid.innerHTML='';
+        visibleItems.length=0;
+        galleryData.forEach((item,idx)=>{
+            if(currentFilter==='all'||item.category===currentFilter){
+                visibleItems.push({item,index:idx});
+                const card=document.createElement('div');
+                card.className='gallery-card';
+                card.dataset.index=idx;
+                card.innerHTML=`
+                    <img src="${item.url}" alt="${item.title}">
+                    <div class="gallery-info">
+                        <h3>${item.title}</h3>
+                        <span>${item.location}</span>
+                    </div>`;
+                galleryGrid.appendChild(card);
+            }
+        });
+    };
+    filters.forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            filters.forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter=btn.dataset.filter;
+            renderGallery();
+        });
+    });
+    renderGallery();
+
+    const lightbox=document.getElementById('lightbox');
+    const lbImg=document.getElementById('lightboxImg');
+    const lbTitle=document.getElementById('lightboxTitle');
+    const lbDesc=document.getElementById('lightboxDesc');
+    const lbLocation=document.getElementById('lightboxLocation');
+    const openLightbox=index=>{
+        lightboxIndex=index;
+        const data=galleryData[index];
+        lbImg.src=data.url;
+        lbImg.alt=data.title;
+        lbTitle.textContent=data.title;
+        lbDesc.textContent=data.description;
+        lbLocation.textContent=data.location;
+        lightbox.classList.add('active');
+    };
+    galleryGrid.addEventListener('click',e=>{
+        const card=e.target.closest('.gallery-card');
+        if(!card) return;
+        openLightbox(+card.dataset.index);
+    });
+    document.querySelector('.lightbox-close').addEventListener('click',()=>lightbox.classList.remove('active'));
+    document.querySelector('.lightbox').addEventListener('click',e=>{
+        if(e.target===lightbox) lightbox.classList.remove('active');
+    });
+    document.querySelectorAll('.lightbox-nav').forEach(btn=>{
+        btn.addEventListener('click',e=>{
+            e.stopPropagation();
+            if(btn.classList.contains('next')){
+                lightboxIndex=(lightboxIndex+1)%galleryData.length;
+            }else{
+                lightboxIndex=(lightboxIndex-1+galleryData.length)%galleryData.length;
+            }
+            openLightbox(lightboxIndex);
+        });
+    });
+
+    document.querySelectorAll('.toggle-service').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            btn.parentElement.classList.toggle('active');
+        });
+    });
+
+    const testimonials=[
+        {name:"Anaïs & Victor",role:"Couple — Lisbonne",quote:"Élise a dirigé notre mariage comme un film. Chaque image déborde de mouvement et du grain doux qu’on rêvait.",img:"https://images.unsplash.com/photo-1520854223473-4a321d0dafa3?auto=format&fit=crop&w=400&q=80"},
+        {name:"Claire Roussel",role:"Directrice création, Maison Lenôtre",quote:"Elle anticipe le moindre détail, assure un rendu cohérent pour print et digital, et bouscule les codes avec tact.",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&q=80"},
+        {name:"Dario Campos",role:"Creative Director, Armonia Objects",quote:"Production limpide, moodboard précis, équipe soudée. Résultat : une campagne qui respire la sophistication.",img:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"}
+    ];
+    const testimonialCard=document.getElementById('testimonialCard');
+    let testimonialIndex=0;
+    const renderTestimonial=()=>{
+        const t=testimonials[testimonialIndex];
+        testimonialCard.innerHTML=`
+            <div class="testimonial-header">
+                <img src="${t.img}" alt="${t.name}">
+                <div>
+                    <strong>${t.name}</strong><br>
+                    <span>${t.role}</span>
+                </div>
+            </div>
+            <p class="quote">“${t.quote}”</p>
+        `;
+    };
+    renderTestimonial();
+    document.querySelectorAll('.testimonial-nav').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            if(btn.classList.contains('next')){
+                testimonialIndex=(testimonialIndex+1)%testimonials.length;
+            }else{
+                testimonialIndex=(testimonialIndex-1+testimonials.length)%testimonials.length;
+            }
+            renderTestimonial();
+        });
+    });
+
+    const bookingForm=document.getElementById('bookingForm');
+    const priceFigure=document.getElementById('priceFigure');
+    const priceBreakdown=document.getElementById('priceBreakdown');
+    const hourValue=document.getElementById('hourValue');
+    const statusMsg=document.getElementById('statusMsg');
+    const basePrices={wedding:1800,portrait:950,editorial:2200};
+    const hourlyRates={wedding:250,portrait:220,editorial:300};
+    const addonPrices={drone:400,prints:260,rush:300};
+    const addonLabels={drone:"Drone cinématique",prints:"Tirages barytés",rush:"Livraison rush 72h"};
+
+    const updateEstimate=()=>{
+        const formData=new FormData(bookingForm);
+        const pkg=formData.get('package');
+        const hours=Number(formData.get('hours'))||0;
+        hourValue.textContent=`${hours} h`;
+        if(!pkg){
+            priceFigure.textContent="0 €";
+            priceBreakdown.innerHTML="<li>Sélectionnez une prestation pour générer l’estimation.</li>";
+            return;
+        }
+        let total=basePrices[pkg]+hours*hourlyRates[pkg];
+        const breakdown=[
+            `Forfait ${pkg==="wedding"?"mariage":pkg==="portrait"?"portrait":"éditorial"} : ${basePrices[pkg].toLocaleString("fr-FR")} €`,
+            `${hours} h x ${hourlyRates[pkg]} € : ${(hours*hourlyRates[pkg]).toLocaleString("fr-FR")} €`
+        ];
+        bookingForm.querySelectorAll('.addons input[type="checkbox"]:checked').forEach(addon=>{
+            total+=addonPrices[addon.value];
+            breakdown.push(`${addonLabels[addon.value]} : ${addonPrices[addon.value].toLocaleString("fr-FR")} €`);
+        });
+        priceFigure.textContent=`${total.toLocaleString("fr-FR")} €`;
+        priceBreakdown.innerHTML=breakdown.map(item=>`<li>${item}</li>`).join("");
+    };
+    bookingForm.addEventListener('input',updateEstimate);
+    updateEstimate();
+
+    bookingForm.addEventListener('submit',e=>{
+        e.preventDefault();
+        statusMsg.textContent="";
+        statusMsg.className='status-msg';
+        const formData=new FormData(bookingForm);
+        const required=["name","email","date","package"];
+        const missing=required.filter(field=>!formData.get(field));
+        if(missing.length){
+            statusMsg.textContent="Merci de compléter tous les champs obligatoires.";
+            statusMsg.classList.add('status-error');
+            return;
+        }
+        statusMsg.textContent="Merci ! Votre message a été envoyé. Je reviens vers vous très vite.";
+        statusMsg.classList.add('status-success');
+        bookingForm.reset();
+        updateEstimate();
+    });
+
+    const journalModal=document.getElementById('journalModal');
+    const journalTitle=document.getElementById('journalModalTitle');
+    const journalText=document.getElementById('journalModalText');
+    document.querySelectorAll('.journal-content button').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            journalTitle.textContent=btn.dataset.title;
+            journalText.textContent=btn.dataset.text;
+            journalModal.classList.add('active');
+        });
+    });
+    journalModal.addEventListener('click',e=>{
+        if(e.target===journalModal) journalModal.classList.remove('active');
+    });
+    journalModal.querySelector('.close-modal').addEventListener('click',()=>journalModal.classList.remove('active'));
+
+    const journalButtons=document.querySelectorAll('.journal-content button');
+    journalButtons.forEach(btn=>{
+        btn.addEventListener('keypress',e=>{
+            if(e.key==="Enter") btn.click();
+        });
+    });
+});
+</script>
+</body>
+</html>
