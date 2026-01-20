@@ -1,1 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | BONHEUR DIGITAL</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg:#f7f5f2;
+    --text:#1f1d1a;
+    --muted:#5a5751;
+    --accent:#d4a373;
+    --accent-strong:#c06c5a;
+    --card:#ffffff;
+    --shadow:0 20px 45px rgba(31,29,26,0.15);
+    --glass:rgba(247,245,242,0.85);
+}
+body.dark {
+    --bg:#121212;
+    --text:#f5f1eb;
+    --muted:#c3beb7;
+    --accent:#efb366;
+    --accent-strong:#ef8f66;
+    --card:#1f1f1f;
+    --shadow:0 20px 45px rgba(0,0,0,0.55);
+    --glass:rgba(18,18,18,0.8);
+}
+*{box-sizing:border-box;}
+body{
+    margin:0;font-family:"Poppins",sans-serif;background:var(--bg);color:var(--text);
+    transition:background 0.4s ease,color 0.4s ease;
+}
+a{text-decoration:none;color:inherit;}
 
+header{
+    backdrop-filter:blur(18px);
+    background:var(--glass);
+    border-bottom:1px solid rgba(0,0,0,0.05);
+}
+body.dark header{border-color:rgba(255,255,255,0.08);}
+.navbar{
+    max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
+    padding:1rem 1.5rem;gap:1rem;
+}
+.brand span{
+    font-family:"Playfair Display",serif;letter-spacing:0.08em;font-size:1.2rem;
+}
+.controls{display:flex;align-items:center;gap:0.8rem;}
+.btn{
+    padding:0.7rem 1.4rem;border-radius:999px;border:1px solid var(--text);
+    background:transparent;color:inherit;font-weight:600;cursor:pointer;transition:all 0.3s;
+}
+.btn-primary{
+    border:none;background:linear-gradient(120deg,var(--accent),var(--accent-strong));
+    color:#fff;box-shadow:0 12px 24px rgba(0,0,0,0.15);
+}
+.theme-toggle{
+    width:44px;height:24px;border-radius:999px;border:none;background:var(--muted);
+    position:relative;cursor:pointer;
+}
+.theme-toggle span{
+    position:absolute;top:3px;left:4px;width:18px;height:18px;border-radius:50%;
+    background:var(--card);transition:transform 0.3s;
+}
+body.dark .theme-toggle span{transform:translateX(18px);}
+
+.section{
+    max-width:1100px;margin:0 auto;padding:3.5rem 1.5rem;
+}
+.section h1{
+    font-family:"Playfair Display",serif;font-size:2.6rem;margin-bottom:0.6rem;
+}
+.contact-wrap{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:2rem;margin-top:2rem;
+}
+.form-card, .info-card{
+    background:var(--card);border-radius:28px;padding:2rem;box-shadow:var(--shadow);
+}
+.form-card label{
+    display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1rem;font-weight:500;
+}
+input, select, textarea{
+    border:1px solid rgba(0,0,0,0.12);border-radius:12px;
+    padding:0.7rem 0.8rem;font-family:inherit;background:transparent;color:inherit;
+}
+textarea{min-height:120px;resize:vertical;}
+.info-card a{color:var(--accent-strong);font-weight:600;}
+footer{text-align:center;padding:2rem 1rem;color:var(--muted);}
+</style>
+</head>
+<body>
+<header>
+    <div class="navbar">
+        <div class="brand"><span>BONHEUR DIGITAL</span></div>
+        <div class="controls">
+            <a class="btn" href="index.html">← Retour</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème"><span></span></button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="section">
+        <h1>Contact</h1>
+        <p class="lead">Parlez-moi de votre projet. Réponse rapide, claire et sur-mesure.</p>
+
+        <div class="contact-wrap">
+            <form class="form-card">
+                <label>Nom
+                    <input type="text" name="name" placeholder="Votre nom" required>
+                </label>
+                <label>Email
+                    <input type="email" name="email" placeholder="Votre email" required>
+                </label>
+                <label>Type de projet
+                    <select name="project" required>
+                        <option value="">Sélectionnez</option>
+                        <option value="cinematic">Cinematic Films</option>
+                        <option value="event">Event Coverage</option>
+                        <option value="business">Business Content</option>
+                    </select>
+                </label>
+                <label>Message
+                    <textarea name="message" placeholder="Décrivez votre besoin..." required></textarea>
+                </label>
+                <button class="btn-primary" type="submit">Envoyer</button>
+            </form>
+
+            <div class="info-card">
+                <h3>WhatsApp</h3>
+                <p><a href="https://wa.me/33658524719" target="_blank">+33 6 58 52 47 19</a></p>
+                <h3>Email</h3>
+                <p><a href="mailto:bonjour@elisefontaine.fr">bonjour@elisefontaine.fr</a></p>
+                <h3>Réseaux sociaux</h3>
+                <p>
+                    <a href="https://www.instagram.com" target="_blank">Instagram</a><br>
+                    <a href="https://www.linkedin.com" target="_blank">LinkedIn</a><br>
+                    <a href="https://www.youtube.com" target="_blank">YouTube</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>© 2026 BONHEUR DIGITAL · DEVELOPED BY SITEMAGIQUE</footer>
+
+
+<script>
+const themeToggle=document.getElementById('themeToggle');
+const applyTheme=(mode)=>{
+    document.body.classList.toggle('dark',mode==='dark');
+};
+const savedTheme=localStorage.getItem('theme');
+if(savedTheme){
+    applyTheme(savedTheme);
+}else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+    applyTheme('dark');
+}
+themeToggle.addEventListener('click',()=>{
+    const isDark=document.body.classList.toggle('dark');
+    localStorage.setItem('theme',isDark?'dark':'light');
+});
+</script>
+</body>
+</html>
